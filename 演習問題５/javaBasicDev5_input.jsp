@@ -50,7 +50,7 @@
     </table>
 
     <p>
-      <label>ランク：</label>
+      <label>ランク:</label>
       <select name="rank">
         <option value="" selected></option>
         <option value="1">シルバー</option>
