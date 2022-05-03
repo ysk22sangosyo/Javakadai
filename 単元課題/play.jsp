@@ -26,20 +26,23 @@
     totalNum -= cast_number;
     session.setAttribute("totalNum",totalNum);
     
+   
     
     
    
     // プレイヤーの切替処理(プレイヤーの取得、切替、保存など)
-    String player = "A";  // プレイヤー用の変数。仮で"A"をセットしている。必要に応じて変更
-    session.setAttribute("player", player);
+    // プレイヤー用の変数。仮で"A"をセットしている。必要に応じて変更
     
-    if(player.equals("A")){
-    	player = "B";
-    	session.setAttribute("player", player);
+    
+    if(session.getAttribute("player")==null){
+    session.setAttribute("player", "A");
+    }
+    String play = (String)session.getAttribute("player"); 
+    if(play.equals("A")){
+    	session.setAttribute("player", "B");
     } 	 
-    if(player.equals("B")){
-    	player = "A";
-    	session.setAttribute("player", player);
+    else if(play.equals("B")){
+    	session.setAttribute("player", "A");
     }
     
    
@@ -68,13 +71,13 @@
     <%
           // todo:このprint分は仮の処理。実装が完了したら削除する。
           // 表示する文字列("●●～")をメソッドを使い取得し、取得した文字列を表示する
-          out.println("●●●●●●●●●●<br>●●●●●●●●●●<br>●●●●●");
+         out.print(Utility.getStoneDisplayHtml(totalNum)); 
       %>
     </p>
   </div>
   <div class="info">
     <h2>
-      プレイヤー<%=player %>の番
+      プレイヤー<%= play %>の番
     </h2>
 
     <form action="play.jsp">
